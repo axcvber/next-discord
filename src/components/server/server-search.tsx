@@ -66,7 +66,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
         <p className='font-semibold text-sm text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition'>
           Search
         </p>
-        <kbd className='pointer-events-none inline-flex h-6 select-none items-center gap-1 rounded bg-zinc-800 px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto'>
+        <kbd className='pointer-events-none inline-flex h-6 select-none items-center gap-1 rounded bg-accent border dark:border-popover px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto'>
           <span className='text-xs'>⌘</span>K
         </kbd>
       </button>

@@ -25,7 +25,7 @@ export const NavigationItem = ({ id, imageUrl, name }: NavigationItemProps) => {
       <button onClick={onClick} className='group relative flex items-center'>
         <div
           className={cn(
-            'absolute left-0 bg-primary rounded-r-full transition-all w-[4px]',
+            'absolute left-0 bg-foreground rounded-r-full transition-all w-[4px]',
             params?.serverId !== id && 'group-hover:h-[20px]',
             params?.serverId === id ? 'h-[36px]' : 'h-[8px]'
           )}
@@ -36,7 +36,7 @@ export const NavigationItem = ({ id, imageUrl, name }: NavigationItemProps) => {
             params?.serverId === id && 'bg-primary/10 text-primary rounded-[16px]'
           )}
         >
-          <Image priority fill src={imageUrl} alt='Channel' className='object-cover' />
+          <Image priority fill sizes='48px' src={imageUrl} alt='Channel' className='object-cover' />
         </div>
       </button>
     </ActionTooltip>

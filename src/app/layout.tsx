@@ -21,10 +21,29 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      localization={{
+        signIn: {
+          start: {
+            title: 'Welcome Back!',
+          },
+        },
+      }}
+      appearance={{
+        variables: {
+          colorPrimary: '#5865f2',
+        },
+      }}
+    >
       <html lang='en' suppressHydrationWarning>
-        <body className={(font.className, 'bg-white dark:bg-[#313338]')}>
-          <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false} storageKey='discord-theme'>
+        <body className={font.className}>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='dark'
+            enableSystem={false}
+            disableTransitionOnChange
+            storageKey='discord-theme'
+          >
             <SocketProvider>
               <ModalProvider />
               <QueryProvider>{children}</QueryProvider>

@@ -5,13 +5,14 @@ import axios from 'axios'
 import qs from 'query-string'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Plus } from 'lucide-react'
+import { Plus, SendHorizontal } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useModal } from '@/hooks/use-modal-store'
 import { EmojiPicker } from '@/components/emoji-picker'
+import { Button } from '../ui/button'
 
 interface ChatInputProps {
   apiUrl: string
@@ -62,7 +63,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <div className='relative p-4 pb-6'>
+                <div className='relative p-4 mb-2'>
                   <button
                     type='button'
                     onClick={() => onOpen('messageFile', { apiUrl, query })}
@@ -76,8 +77,16 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                     placeholder={`Message ${type === 'conversation' ? name : '#' + name}`}
                     {...field}
                   />
-                  <div className='absolute top-7 right-8'>
+                  <div className='absolute top-1/2 -translate-y-1/2 right-8 flex gap-2'>
                     <EmojiPicker onChange={(emoji: string) => field.onChange(`${field.value} ${emoji}`)} />
+                    <Button
+                      type='submit'
+                      size={'icon'}
+                      className='rounded-full w-[32px] h-[32px] p-2  md:hidden'
+                      disabled={isLoading}
+                    >
+                      <SendHorizontal />
+                    </Button>
                   </div>
                 </div>
               </FormControl>

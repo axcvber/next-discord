@@ -4,16 +4,10 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
+import { DialogFooter } from '@/components/ui/dialog'
 import { useModal } from '@/hooks/use-modal-store'
 import { Button } from '@/components/ui/button'
+import { Modal } from '@/components/ui/modal'
 
 export const LeaveServerModal = () => {
   const { isOpen, onClose, type, data } = useModal()
@@ -42,25 +36,26 @@ export const LeaveServerModal = () => {
   }
 
   return (
-    <Dialog open={isModalOpen} onOpenChange={onClose}>
-      <DialogContent className='bg-white text-black p-0 overflow-hidden'>
-        <DialogHeader className='pt-8 px-6'>
-          <DialogTitle className='text-2xl text-center font-bold'>Leave Server</DialogTitle>
-          <DialogDescription className='text-center text-zinc-500'>
-            Are you sure you want to leave <span className='font-semibold text-indigo-500'>{server?.name}</span>?
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter className='bg-gray-100 px-6 py-4'>
-          <div className='flex items-center justify-between w-full'>
-            <Button disabled={isLoading} onClick={onClose} variant='ghost'>
-              Cancel
-            </Button>
-            <Button disabled={isLoading} variant='primary' onClick={onClick}>
-              Confirm
-            </Button>
-          </div>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <Modal
+      isOpen={isModalOpen}
+      onClose={onClose}
+      title='Leave Server'
+      description={
+        <>
+          Are you sure you want to leave <span className='font-semibold text-indigo-500'>{server?.name}</span>?
+        </>
+      }
+    >
+      <DialogFooter>
+        <div className='flex items-center justify-between w-full'>
+          <Button disabled={isLoading} onClick={onClose} variant='destructive'>
+            Cancel
+          </Button>
+          <Button disabled={isLoading} variant='primary' onClick={onClick}>
+            Confirm
+          </Button>
+        </div>
+      </DialogFooter>
+    </Modal>
   )
 }

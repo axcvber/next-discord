@@ -1,9 +1,10 @@
 import { redirectToSignIn } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
-
+import { Suspense } from 'react'
 import { db } from '@/lib/db'
 import { currentProfile } from '@/lib/current-profile'
 import { ServerSidebar } from '@/components/server/server-sidebar'
+import Loading from './channels/[channelId]/loading'
 
 const ServerIdLayout = async ({ children, params }: { children: React.ReactNode; params: { serverId: string } }) => {
   const profile = await currentProfile()
@@ -33,6 +34,9 @@ const ServerIdLayout = async ({ children, params }: { children: React.ReactNode;
         <ServerSidebar serverId={params.serverId} />
       </div>
       <main className='h-full md:pl-60'>{children}</main>
+      {/* <main className='h-full md:pl-60'>
+        <Loading />
+      </main> */}
     </div>
   )
 }

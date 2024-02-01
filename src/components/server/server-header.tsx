@@ -28,16 +28,16 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className='focus:outline-none' asChild>
-        <button className='w-full text-md font-semibold text-accent-foreground px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition'>
+        <button className='w-full text-md font-semibold text-accent-foreground px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-accent transition'>
           {server.name}
           <ChevronDown className='h-5 w-5 ml-auto' />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-56 border-none text-xs font-medium text-black dark:text-neutral-400 dark:bg-[#111214] space-y-[2px]'>
+      <DropdownMenuContent className='w-56 border-none text-xs font-medium text-black dark:text-neutral-400 bg-background dark:bg-[#111214] space-y-[3px]'>
         {isModerator && (
           <DropdownMenuItem
             onClick={() => onOpen('invite', { server })}
-            className='text-primary px-3 py-2 text-sm cursor-pointer focus:bg-primary focus:text-white'
+            className='text-primary px-3 py-2 text-sm  hover:bg-primary hover:text-primary-foreground'
           >
             Invite People
             <UserPlus className='h-4 w-4 ml-auto' />
@@ -46,7 +46,7 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         {isAdmin && (
           <DropdownMenuItem
             onClick={() => onOpen('editServer', { server })}
-            className='px-3 py-2 text-sm cursor-pointer focus:bg-primary'
+            className='px-3 py-2 text-sm hover:bg-primary hover:text-primary-foreground'
           >
             Server Settings
             <Settings className='h-4 w-4 ml-auto' />
@@ -55,7 +55,7 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         {isAdmin && (
           <DropdownMenuItem
             onClick={() => onOpen('members', { server })}
-            className='px-3 py-2 text-sm cursor-pointer focus:bg-primary'
+            className='px-3 py-2 text-sm hover:bg-primary hover:text-primary-foreground'
           >
             Manage Members
             <Users className='h-4 w-4 ml-auto' />
@@ -64,17 +64,17 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         {isModerator && (
           <DropdownMenuItem
             onClick={() => onOpen('createChannel')}
-            className='px-3 py-2 text-sm cursor-pointer focus:bg-primary'
+            className='px-3 py-2 text-sm hover:bg-primary hover:text-primary-foreground'
           >
             Create Channel
             <PlusCircle className='h-4 w-4 ml-auto' />
           </DropdownMenuItem>
         )}
-        {isModerator && <DropdownMenuSeparator />}
+        {isModerator && <DropdownMenuSeparator className='!my-[3px]' />}
         {isAdmin && (
           <DropdownMenuItem
             onClick={() => onOpen('deleteServer', { server })}
-            className='text-rose-500 px-3 py-2 text-sm cursor-pointer focus:bg-rose-500 focus:text-white'
+            className='text-destructive px-3 py-2 text-sm hover:bg-destructive hover:text-white'
           >
             Delete Server
             <Trash className='h-4 w-4 ml-auto' />
@@ -83,7 +83,7 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
         {!isAdmin && (
           <DropdownMenuItem
             onClick={() => onOpen('leaveServer', { server })}
-            className='text-rose-500 px-3 py-2 text-sm cursor-pointer focus:bg-rose-500 focus:text-white'
+            className='text-destructive px-3 py-2 text-sm hover:bg-destructive hover:text-white'
           >
             Leave Server
             <LogOut className='h-4 w-4 ml-auto' />
